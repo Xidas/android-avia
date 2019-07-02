@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Avia</string>
+    <string name="sample">MUSORA BLA PIDORASY</string>
+    <string name="hello">Hello, %1$s</string>
+    <string name="flame">Flaamee</string>
+    <string name="background" translatable="false">background</string>
+    <string name="movie_logo_image">Movie logo image</string>
+    <string name="watch_icon">Иконка часов</string>
+    <string name="logo">logo</string>
+    <string name="settings_departure">Departure</string>
+    <string name="settings_arrival">Arrival</string>
+    <string name="one_way_flight_type">One way</string>
+    <string name="round_trip_flight_type">Round trip</string>
+    <string name="several_ways_flight_type">Several ways</string>
+    <string name="there">There</string>
+    <string name="back">Back</string>
+    <string name="adultcountincrement">adultCountIncrement</string>
+    <string name="_1">1</string>
+    <string name="passenger_type_adult">Adult</string>
+    <string name="passenger_type_child">Child</string>
+    <string name="passenger_type_infant">Infant</string>
+    <string name="search_button">Search!</string>
+    <string name="littlelogo">littleLogo</string>
+</resources>
