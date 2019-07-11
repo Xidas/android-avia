@@ -4,16 +4,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:id="@+id/main__ll_error_bar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@android:color/holo_red_light"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/main__tv_error_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/error"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
     <ImageView
         android:id="@+id/main__iv_logo"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginTop="30dp"
         android:contentDescription="@string/logo"
         android:src="@drawable/avia_logo"
+        app:layout_constraintBottom_toTopOf="@id/main__iv_logo_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageView
+        android:id="@+id/main__iv_logo_text"
+        android:layout_width="160dp"
+        android:layout_height="74dp"
+        android:src="@drawable/logo32"
+        app:layout_constraintBottom_toTopOf="@id/main__fl_settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main__iv_logo" />
+
 
     <LinearLayout
         android:id="@+id/main__fl_settings"
@@ -38,7 +74,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="70"
                 android:hint="@string/settings_departure"
-                android:inputType="textShortMessage" />
+                android:inputType="textShortMessage"
+                />
 
             <EditText
                 android:id="@+id/main__settings_departure_date"
@@ -81,6 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:checked="true"
                 android:text="@string/one_way_flight_type" />
 
             <RadioButton
@@ -112,41 +150,41 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/passenger_type_adult"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
                 <ImageButton
                     android:id="@+id/main__ib_adultAdd"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:background="#FFF"
+                    android:background="@null"
                     android:contentDescription="@string/adultcountincrement"
                     android:onClick="increment"
                     android:scaleType="fitXY"
                     android:src="@drawable/plus_icon" />
 
-                <LinearLayout
+
+                <EditText
+                    android:id="@+id/main__tv_adultCount"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/main__tv_adultCount"
-                        android:layout_width="42dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:text="@string/_1" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/passenger_type_adult"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="@string/_1"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
 
                 <ImageButton
                     android:id="@+id/main__ib_adultRemove"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:background="#FFF"
+                    android:background="@null"
                     android:onClick="decrement"
                     android:scaleType="fitXY"
                     android:src="@drawable/minus_icon" />
@@ -155,46 +193,47 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/passenger_type_child"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <ImageButton
                     android:id="@+id/main__ib_childAdd"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:background="#FFF"
+                    android:background="@null"
                     android:contentDescription="@string/adultcountincrement"
                     android:onClick="increment"
                     android:scaleType="fitXY"
                     android:src="@drawable/plus_icon" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/main__tv_childCount"
-                        android:layout_width="42dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:text="@string/_1" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/passenger_type_child"
-                        android:textSize="16sp" />
-                </LinearLayout>
+                <EditText
+                    android:id="@+id/main__tv_childCount"
+                    android:layout_width="42dp"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="@string/_0"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
 
 
                 <ImageButton
                     android:id="@+id/main__ib_childRemove"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:background="#FFF"
+                    android:background="@null"
                     android:onClick="decrement"
                     android:scaleType="fitXY"
                     android:src="@drawable/minus_icon" />
@@ -208,41 +247,42 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/passenger_type_infant"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
                 <ImageButton
                     android:id="@+id/main__ib_infantAdd"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:background="#FFF"
+                    android:background="@null"
                     android:contentDescription="@string/adultcountincrement"
                     android:onClick="increment"
                     android:scaleType="fitXY"
                     android:src="@drawable/plus_icon" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/main__tv_infantCount"
-                        android:layout_width="42dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:text="@string/_1" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/passenger_type_infant"
-                        android:textSize="16sp" />
-                </LinearLayout>
+                <EditText
+                    android:id="@+id/main__tv_infantCount"
+                    android:layout_width="42dp"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="@string/_0"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
 
 
                 <ImageButton
                     android:id="@+id/main__ib_infantRemove"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:background="#FFF"
+                    android:background="@null"
                     android:onClick="decrement"
                     android:scaleType="fitXY"
                     android:src="@drawable/minus_icon" />
@@ -277,6 +317,4 @@
             android:contentDescription="@string/littlelogo"
             android:src="@drawable/avia_logo" />
     </LinearLayout>
-
-
 </android.support.constraint.ConstraintLayout>

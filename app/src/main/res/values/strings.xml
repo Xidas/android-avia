@@ -21,4 +21,14 @@
     <string name="passenger_type_infant">Infant</string>
     <string name="search_button">Search!</string>
     <string name="littlelogo">littleLogo</string>
+    <string name="logo_text">PrimeConcept Avia</string>
+    <string name="_0">0</string>
+    <string name="error">error</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_bottom_menu">BottomMenu</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
