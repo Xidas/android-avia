@@ -4,31 +4,34 @@
     <string name="hello">Hello, %1$s</string>
     <string name="flame">Flaamee</string>
     <string name="background" translatable="false">background</string>
-    <string name="movie_logo_image">Movie logo image</string>
-    <string name="watch_icon">Иконка часов</string>
-    <string name="logo">logo</string>
+    <string name="watch_icon" translatable="false">Watch icon</string>
+    <string name="logo" translatable="false">logo</string>
     <string name="settings_departure">Departure</string>
     <string name="settings_arrival">Arrival</string>
     <string name="one_way_flight_type">One way</string>
     <string name="round_trip_flight_type">Round trip</string>
     <string name="several_ways_flight_type">Several ways</string>
     <string name="there">There</string>
-    <string name="back">Back</string>
-    <string name="adultcountincrement">adultCountIncrement</string>
-    <string name="_1">1</string>
+    <string name="back" translatable="false">Back</string>
+    <string name="adultcountincrement" translatable="false">adultCountIncrement</string>
+    <string name="_1" translatable="false">1</string>
     <string name="passenger_type_adult">Adult</string>
     <string name="passenger_type_child">Child</string>
     <string name="passenger_type_infant">Infant</string>
     <string name="search_button">Search!</string>
     <string name="littlelogo">littleLogo</string>
-    <string name="logo_text">PrimeConcept Avia</string>
-    <string name="_0">0</string>
+    <string name="logo_text" translatable="false">PrimeConcept Avia</string>
+    <string name="_0" translatable="false">0</string>
     <string name="error">error</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_bottom_menu" translatable="false">BottomMenu</string>
+    <string name="title_home" translatable="false">Home</string>
+    <string name="title_dashboard" translatable="false">Dashboard</string>
+    <string name="title_notifications" translatable="false">Notifications</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_bottom_menu">BottomMenu</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="enter_location_name">Введите наименование локации</string>
+    <string name="cancel">Cancel</string>
 </resources>

@@ -73,9 +73,10 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="70"
+                android:focusable="false"
                 android:hint="@string/settings_departure"
                 android:inputType="textShortMessage"
-                />
+                android:onClick="showLocPickerActivity" />
 
             <EditText
                 android:id="@+id/main__settings_departure_date"
@@ -96,7 +97,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="70"
-                android:hint="@string/settings_arrival" />
+                android:focusable="false"
+                android:hint="@string/settings_arrival"
+                android:inputType="textShortMessage"
+                android:onClick="showLocPickerActivity" />
 
             <EditText
                 android:id="@+id/main__settings_departure_date_back"

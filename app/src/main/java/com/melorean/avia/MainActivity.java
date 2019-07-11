@@ -1,24 +1,17 @@
 package com.melorean.avia;
 
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.melorean.avia.fragments.DatePickerDialogFragment;
-import com.melorean.avia.model.Location;
-import com.melorean.avia.utils.HttpClient;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
 
@@ -34,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mEtArrival;
     private EditText mEtDepartureDate;
     private EditText getmEtDepartureDateBack;
-    private String error;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,22 +49,35 @@ public class MainActivity extends AppCompatActivity {
         mEtDepartureDate = findViewById(R.id.main__settings_departure_date);
         getmEtDepartureDateBack = findViewById(R.id.main__settings_departure_date_back);
 
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                HttpClient<Location> httpClient = new HttpClient<>();
-                Log.d("DEBUGAsss", httpClient.connectGet("http://api.travelpayouts.com/data/ru/airports.json", new HashMap<String, String>(), Location.class).toString());
-            }
-        });
-        t.start();
-
 
     }
 
 
-    private void showError(String error) {
-        this.error = error;
-        new ErrorBarAsyncTask().execute();
+    private void showError(final String error) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mTvErrorText.setText(error);
+                mLlErrorBar.setVisibility(View.VISIBLE);
+                Thread wait = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(3000);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mLlErrorBar.setVisibility(View.GONE);
+                                }
+                            });
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                wait.start();
+            }
+        });
     }
 
     public void increment(View view) {
@@ -133,32 +139,36 @@ public class MainActivity extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
-    private Integer passengersCount() {
-        return Integer.valueOf(mTvAdult.getText().toString()) + Integer.valueOf(mTvChild.getText().toString()) + Integer.valueOf(mTvInfant.getText().toString());
+    public void showLocPickerActivity(View view) {
+        Intent locPickerIntent = new Intent(this, LocationListActivity.class);
+        int requestCode = 1;
+        switch (view.getId()) {
+            case R.id.main__settings_departure:
+                requestCode = 9910;
+                break;
+            case R.id.main__settings_arrival:
+                requestCode = 9920;
+
+        }
+        startActivityForResult(locPickerIntent, requestCode);
     }
 
-    private class ErrorBarAsyncTask extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            mTvErrorText.setText(error);
-            mLlErrorBar.setVisibility(View.VISIBLE);
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(Void... strings) {
-            try {
-                Thread.sleep(3 * 1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            switch (requestCode) {
+                case 9910:
+                    mEtDeparture.setText(data.getStringExtra("location"));
+                    break;
+                case 9920:
+                    mEtArrival.setText(data.getStringExtra("location"));
+                    break;
             }
-            return null;
         }
+    }
 
-        @Override
-        protected void onPostExecute(Void s) {
-            super.onPostExecute(s);
-            mLlErrorBar.setVisibility(View.GONE);
-        }
+    private Integer passengersCount() {
+        return Integer.valueOf(mTvAdult.getText().toString()) + Integer.valueOf(mTvChild.getText().toString()) + Integer.valueOf(mTvInfant.getText().toString());
     }
 }

@@ -4,4 +4,15 @@
     <string name="hello">Привет, %1$s</string>
     <string name="sample">MUSORA BLA PIDORASY</string>
     <string name="flame">Огооооооонь</string>
+    <string name="error" translatable="false">Ошибка</string>
+    <string name="one_way_flight_type">В одну сторону</string>
+    <string name="passenger_type_adult">Взрослый</string>
+    <string name="passenger_type_child">Ребёнок</string>
+    <string name="passenger_type_infant">Младенец</string>
+    <string name="round_trip_flight_type">Туда-обратно</string>
+    <string name="search_button">Искать!</string>
+    <string name="settings_arrival">Куда</string>
+    <string name="settings_departure">Откуда</string>
+    <string name="several_ways_flight_type">Сложный маршрут</string>
+    <string name="there">Там</string>
 </resources>
