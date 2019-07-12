@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Avia</string>
-    <string name="sample">MUSORA BLA PIDORASY</string>
-    <string name="hello">Hello, %1$s</string>
-    <string name="flame">Flaamee</string>
     <string name="background" translatable="false">background</string>
     <string name="watch_icon" translatable="false">Watch icon</string>
     <string name="logo" translatable="false">logo</string>
@@ -19,19 +16,13 @@
     <string name="passenger_type_child">Child</string>
     <string name="passenger_type_infant">Infant</string>
     <string name="search_button">Search!</string>
-    <string name="littlelogo">littleLogo</string>
+    <string name="littlelogo" translatable="false">littleLogo</string>
     <string name="logo_text" translatable="false">PrimeConcept Avia</string>
     <string name="_0" translatable="false">0</string>
     <string name="error">error</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="title_activity_bottom_menu" translatable="false">BottomMenu</string>
-    <string name="title_home" translatable="false">Home</string>
-    <string name="title_dashboard" translatable="false">Dashboard</string>
-    <string name="title_notifications" translatable="false">Notifications</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="enter_location_name">Введите наименование локации</string>
+    <string name="enter_location_name">Enter location name</string>
     <string name="cancel">Cancel</string>
+    <string name="from">From</string>
+    <string name="where">Where</string>
 </resources>

@@ -12,10 +12,18 @@ import android.widget.TextView;
 
 import com.melorean.avia.fragments.DatePickerDialogFragment;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final int DEPARTURE_REQUEST_CODE = 9910;
+    public static final int ARRIVAL_REQUEST_CODE = 9920;
+    public static final String REQUEST_CODE_STRING = "requestCode";
 
 
     private TextView mTvAdult;
@@ -47,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         mEtArrival = findViewById(R.id.main__settings_arrival);
 
         mEtDepartureDate = findViewById(R.id.main__settings_departure_date);
+        Calendar calendar = Calendar.getInstance();
+        mEtDepartureDate.setText(new StringBuilder().append(calendar.get(Calendar.DAY_OF_MONTH)).append(".").append(calendar.get(Calendar.MONTH)).append(".").append(calendar.get(Calendar.YEAR)));
         getmEtDepartureDateBack = findViewById(R.id.main__settings_departure_date_back);
 
 
@@ -140,17 +150,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showLocPickerActivity(View view) {
-        Intent locPickerIntent = new Intent(this, LocationListActivity.class);
-        int requestCode = 1;
         switch (view.getId()) {
             case R.id.main__settings_departure:
-                requestCode = 9910;
+                startLocationPickerForFrom();
                 break;
             case R.id.main__settings_arrival:
-                requestCode = 9920;
+                startLocationPickerForWhere();
 
         }
-        startActivityForResult(locPickerIntent, requestCode);
     }
 
     @Override
@@ -158,14 +165,29 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
             switch (requestCode) {
-                case 9910:
+                case DEPARTURE_REQUEST_CODE:
                     mEtDeparture.setText(data.getStringExtra("location"));
+                    if (mEtArrival.getText().toString().equals("") || mEtArrival.getText() == null) {
+                        startLocationPickerForWhere();
+                    }
                     break;
-                case 9920:
+                case ARRIVAL_REQUEST_CODE:
                     mEtArrival.setText(data.getStringExtra("location"));
                     break;
             }
         }
+    }
+
+    private void startLocationPickerForFrom() {
+        Intent locPickerIntent = new Intent(this, LocationListActivity.class);
+        locPickerIntent.putExtra(REQUEST_CODE_STRING, DEPARTURE_REQUEST_CODE);
+        startActivityForResult(locPickerIntent, DEPARTURE_REQUEST_CODE);
+    }
+
+    private void startLocationPickerForWhere() {
+        Intent locPickerIntent = new Intent(this, LocationListActivity.class);
+        locPickerIntent.putExtra(REQUEST_CODE_STRING, ARRIVAL_REQUEST_CODE);
+        startActivityForResult(locPickerIntent, ARRIVAL_REQUEST_CODE);
     }
 
     private Integer passengersCount() {

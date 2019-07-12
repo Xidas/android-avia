@@ -20,6 +20,7 @@ import com.melorean.avia.service.NetworkService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,6 +39,7 @@ public class LocationListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_list);
         etLoc = findViewById(R.id.location_list__et);
+        etLoc.setHint(getEditTextHint());
         rv = findViewById(R.id.location_list__rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.addItemDecoration(new DividerItemDecoration(rv.getContext(), DividerItemDecoration.HORIZONTAL));
@@ -51,6 +53,15 @@ public class LocationListActivity extends AppCompatActivity {
         getFilteredLocationList("startInit");
         locationItemAdapter = new LocationItemAdapter(filteredLocationList);
         rv.setAdapter(locationItemAdapter);
+    }
+
+    public int getEditTextHint() {
+        int requestCode = (int) getIntent().getExtras().get(MainActivity.REQUEST_CODE_STRING);
+        if (requestCode == MainActivity.DEPARTURE_REQUEST_CODE) {
+            return R.string.from;
+        } else if (requestCode == MainActivity.ARRIVAL_REQUEST_CODE) {
+            return R.string.where;
+        } else return R.string.enter_location_name;
     }
 
     private void setTextWatcher() {
@@ -104,7 +115,7 @@ public class LocationListActivity extends AppCompatActivity {
         });
     }
 
-    public void onClick(View view) {
+    public void onItemClick(View view) {
         int i = rv.getChildLayoutPosition(view);
         LocationItem locationItem = filteredLocationList.get(i);
         Intent intent = new Intent();
@@ -112,6 +123,12 @@ public class LocationListActivity extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
+
+    public void cancelBtnClick(View view) {
+        setResult(RESULT_CANCELED);
+        finish();
+    }
+
 
     private List<LocationItem> getFilteredLocationList(String loc) {
         if (filteredLocationList == null) {
